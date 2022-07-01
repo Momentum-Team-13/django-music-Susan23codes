@@ -16,6 +16,20 @@ def add_album(request):
     else:
         form = AlbumForm()
         return render(request, "albums/add_album.html", {"form": form})
-    # return render(request, "albums/show_albums.html", {
-    #     "form": form, "albums": albums
-    # })
+
+def album_detail(request, pk):
+    album = get_object_or_404(Album, pk=pk)
+    return render(request, "albums/album_detail.html", {"album": album})
+
+def edit_album(request, pk):
+    album = get_object_or_404(Album, pk=pk)
+    if request.method == 'POST':
+        form = AlbumForm(data=request.POST, instance=album)
+        if form.is_valid():
+            form.save()
+            return redirect(to='show_albums')
+    else:
+        form = AlbumForm(instance=album)
+        return render(request, "albums/edit_album.html", {
+            "form": form, "album": album
+        })

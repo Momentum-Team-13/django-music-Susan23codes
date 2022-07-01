@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h1>Album</h1>
+
+<div class="flex">
+    <div class="pr2"><i class="icofont-location-pin"></i></div>
+    <div>
+      {{ album.title }}<br>
+      {{ album.artist }}<br>
+      Date added: {{ album.created_date }}
+    </div>
+  </div>
 
 {% endblock %}

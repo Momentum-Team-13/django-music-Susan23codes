@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1><u>My Albums</u></h1>
+<h1 style="text-align:center;"><u>My Albums</u></h1>
+<h2 style="text-align:center;"">
+    <a href="{% url 'add_album' %}">Add an Album</a><br>
+</h2>
 
 
 <div class="flex flex-wrap">
   {% for album in albums %}
   <div class="w-33 pa3" style="border:2px solid;">
-    <h2 class = "artist" style="color:blueviolet;">{{ album.artist }}</h2>
+    <h2 class = "artist" style="color:blueviolet;"><a href="{% url 'album_detail' pk=album.pk %}">{{ album.artist }}</a></h2>
 
     <div class="flex">
         <div class="pr2"><i class="icofont-location-pin"></i></div>
@@ -16,14 +19,10 @@
 
     <div class="flex">
         <div class="pr2"><i class="icofont-location-pin"></i></div>
-    <h3>{{ album.created_date }}</h3>
     </div>
-    <a href="#">Edit Album</a><br> 
+    <a href="{% url 'edit_album' pk=album.pk %}">Edit Album</a><br> 
     <a href="#">Delete Album</a><br> 
     </div>
     {% endfor %}
-    <h2>
-        <a href="{% url 'add_album' %}">Add Album</a><br>
-    </h2>
 </div>
 {% endblock %}
