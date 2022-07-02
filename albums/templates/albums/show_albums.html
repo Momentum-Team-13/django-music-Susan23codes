@@ -14,14 +14,14 @@
 
     <div class="flex">
         <div class="pr2"><i class="icofont-location-pin"></i></div>
-    <h3>{{ album.title }}</h3>
+    <h3 class = "title">{{ album.title }}</h3>
     </div>
 
     <div class="flex">
         <div class="pr2"><i class="icofont-location-pin"></i></div>
     </div>
     <a href="{% url 'edit_album' pk=album.pk %}">Edit Album</a><br> 
-    <a href="#">Delete Album</a><br> 
+    <a href="{% url 'delete_album' pk=album.pk %}">Delete Album</a><br> 
     </div>
     {% endfor %}
 </div>

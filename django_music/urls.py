@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import path
 from albums import views
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +26,5 @@ urlpatterns = [
     path('album/add', views.add_album, name='add_album'),
     path('album/<int:pk>/detail', views.album_detail, name='album_detail'),
     path('album/<int:pk>/edit', views.edit_album, name='edit_album'),
-]
+    path('album/<int:pk>/delete', views.delete_album, name='delete_album')
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
