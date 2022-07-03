@@ -1,0 +1,152 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Django Music Collection</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/tachyons.min.css">
+  <link rel="stylesheet" href="/static/icofont/icofont.min.css">
+</head>
+<body class="sans-serif pv3 ph2">
+  <div class="mw9 center background">
+    
+<h1 style="text-align:center;"><u>My Albums</u></h1>
+<h2 style="text-align:center;"">
+    <a href=" /album/add">Add an Album</a><br>
+</h2>
+
+
+<div class="flex flex-wrap">
+    
+    <div class="w-33 pa3 album_container">
+        <h2><a href="/album/1/detail">Imagine Dragons</a></h2>
+
+        <div class="flex">
+            <div class="pr2"><i class="icofont-location-pin"></i></div>
+            <h3 class="title">Origins</h3>
+        </div>
+        
+        <p class="favorite" data-pk=1>&#x2661;</p>
+        
+        <div class="flex">
+            <div class="pr2"><i class="icofont-location-pin"></i></div>
+        </div>
+        <a href="/album/1/edit">Edit Album</a><br>
+        <a href="/album/1/delete">Delete Album</a><br>
+    </div>
+    
+    <div class="w-33 pa3 album_container">
+        <h2><a href="/album/3/detail">Genesis</a></h2>
+
+        <div class="flex">
+            <div class="pr2"><i class="icofont-location-pin"></i></div>
+            <h3 class="title">Selling England by the Pound</h3>
+        </div>
+        
+        <p class="favorite" data-pk=3>&#x2665;</p>
+        
+        <div class="flex">
+            <div class="pr2"><i class="icofont-location-pin"></i></div>
+        </div>
+        <a href="/album/3/edit">Edit Album</a><br>
+        <a href="/album/3/delete">Delete Album</a><br>
+    </div>
+    
+    <div class="w-33 pa3 album_container">
+        <h2><a href="/album/6/detail">Green Day</a></h2>
+
+        <div class="flex">
+            <div class="pr2"><i class="icofont-location-pin"></i></div>
+            <h3 class="title">American Idiot</h3>
+        </div>
+        
+        <p class="favorite" data-pk=6>&#x2661;</p>
+        
+        <div class="flex">
+            <div class="pr2"><i class="icofont-location-pin"></i></div>
+        </div>
+        <a href="/album/6/edit">Edit Album</a><br>
+        <a href="/album/6/delete">Delete Album</a><br>
+    </div>
+    
+    <div class="w-33 pa3 album_container">
+        <h2><a href="/album/8/detail">They Might Be Giants</a></h2>
+
+        <div class="flex">
+            <div class="pr2"><i class="icofont-location-pin"></i></div>
+            <h3 class="title">Flood</h3>
+        </div>
+        
+        <p class="favorite" data-pk=8>&#x2665;</p>
+        
+        <div class="flex">
+            <div class="pr2"><i class="icofont-location-pin"></i></div>
+        </div>
+        <a href="/album/8/edit">Edit Album</a><br>
+        <a href="/album/8/delete">Delete Album</a><br>
+    </div>
+    
+    <div class="w-33 pa3 album_container">
+        <h2><a href="/album/9/detail">Genesis</a></h2>
+
+        <div class="flex">
+            <div class="pr2"><i class="icofont-location-pin"></i></div>
+            <h3 class="title">Duke</h3>
+        </div>
+        
+        <p class="favorite" data-pk=9>&#x2665;</p>
+        
+        <div class="flex">
+            <div class="pr2"><i class="icofont-location-pin"></i></div>
+        </div>
+        <a href="/album/9/edit">Edit Album</a><br>
+        <a href="/album/9/delete">Delete Album</a><br>
+    </div>
+    
+    <div class="w-33 pa3 album_container">
+        <h2><a href="/album/10/detail">Imagine Dragons</a></h2>
+
+        <div class="flex">
+            <div class="pr2"><i class="icofont-location-pin"></i></div>
+            <h3 class="title">Smoke and Mirrors</h3>
+        </div>
+        
+        <p class="favorite" data-pk=10>&#x2661;</p>
+        
+        <div class="flex">
+            <div class="pr2"><i class="icofont-location-pin"></i></div>
+        </div>
+        <a href="/album/10/edit">Edit Album</a><br>
+        <a href="/album/10/delete">Delete Album</a><br>
+    </div>
+    
+</div>
+
+<script>
+    let favorite_albums = document.querySelectorAll(".favorite");
+    for (let favorite of favorite_albums) {
+        favorite.addEventListener("click", toggle);
+        function toggle() {
+            let pk = favorite.getAttribute("data-pk")
+            fetch(`http://127.0.0.1:8000/album/${pk}/toggle_favorite`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.is_favorite) {
+                        favorite.innerHTML = "&#x2661;"
+                    } else {
+                        favorite.innerHTML = "&#x2665;"
+                    }
+                });
+        }
+    }
+
+
+
+</script>
+
+  </div>
+</body>
+</html>

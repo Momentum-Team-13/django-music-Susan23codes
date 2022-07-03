@@ -2,10 +2,11 @@
 
 {% block content %}
 <h1>Album</h1>
+<p class="home_button"><a href="{% url 'show_albums' %}">Home</a></p><br> 
 
-<div class="flex">
+<div class="background_album_detail">
     <div class="pr2"><i class="icofont-location-pin"></i></div>
-    <div>
+    <div class="album_container individual_album">
       {{ album.title }}<br>
       {{ album.artist }}<br>
       Date added: {{ album.created_date }}

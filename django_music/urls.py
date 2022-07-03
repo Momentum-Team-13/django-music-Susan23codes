@@ -26,5 +26,6 @@ urlpatterns = [
     path('album/add', views.add_album, name='add_album'),
     path('album/<int:pk>/detail', views.album_detail, name='album_detail'),
     path('album/<int:pk>/edit', views.edit_album, name='edit_album'),
-    path('album/<int:pk>/delete', views.delete_album, name='delete_album')
+    path('album/<int:pk>/delete', views.delete_album, name='delete_album'),
+    path('album/<int:pk>/toggle_favorite', views.toggle_favorite, name='toggle_favorite'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
