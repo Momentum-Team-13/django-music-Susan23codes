@@ -24,8 +24,13 @@ def add_album(request):
                 f"https://itunes.apple.com/search?media=music&attribute=albumTerm&term={album.title}&limit=200"
             )
             response_json = response.json()
-            url = response_json["results"][0]["artworkUrl100"]
-            album.album_art_url = url
+            result_objects = response_json["results"]
+            for result in result_objects:
+                artist_lower = album.artist.lower()
+                if artist_lower in result["artistName"].lower()or artist_lower in result["collectionName"].lower():
+                    filtered_result = result["artworkUrl100"]
+                    album.album_art_url = filtered_result
+                    break
             album.save()
         return redirect(to='show_albums')
     else:

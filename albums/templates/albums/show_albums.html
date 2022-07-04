@@ -30,24 +30,5 @@
     {% endfor %}
 </div>
 
-<script>
-    
-    let favorite_albums = document.querySelectorAll(".favorite");
-    for (let favorite of favorite_albums) {
-        favorite.addEventListener("click", toggle);
-        function toggle() {
-            let pk = favorite.getAttribute("data-pk")
-            fetch(`http://127.0.0.1:8000/album/${pk}/toggle_favorite`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.is_favorite) {
-                        favorite.innerHTML = "&#x2661;"
-                    } else {
-                        favorite.innerHTML = "&#x2665;"
-                    }
-                });
-        }
-    }
 
-</script>
 {% endblock %}
