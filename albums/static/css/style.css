@@ -1,6 +1,8 @@
 
 .title {
     color:blueviolet;
+    font-size: 20px;
+    padding-top: 10px;
 }
 
 h1 {
@@ -13,7 +15,20 @@ h1 {
 
 .background {
     background-color: rgb(93, 132, 190);
-    padding-left: 70px;
+    padding-bottom: 15px;
+}
+
+.top_section {
+    height: 20vh;
+}
+
+.scroll {
+    overflow: scroll;
+    height: 80vh;
+}
+
+.background_album_detail {
+    background-color: rgb(93, 132, 190);
 }
 
 .album_container {
@@ -26,10 +41,11 @@ h1 {
 }
 
 .individual_album {
+    display: flex;
+    flex-direction: column;
     text-align: center;
     margin: 0 auto;
     font-size: 25px;
-    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,6 +69,18 @@ h1 {
 .favorite {
     font-size: 40px;
     color: red;
+}
+
+.favorite_detail {
+    font-size: 40px;
+    color: red;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.date_added {
+    font-size: 15px;
+    font-family: italic;
 }
 
 .album_art {

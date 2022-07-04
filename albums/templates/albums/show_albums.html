@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class = "top_section">
 <h1 style="text-align:center;"><u>My Albums</u></h1>
 <h2 style="text-align:center;"">
     <a href=" {% url 'add_album' %}">Add an Album</a><br>
 </h2>
+</div>
 {{ url }}
 
-<div class="flex flex-wrap">
+<div class="flex flex-wrap scroll">
     {% for album in albums %}
     <div class="w-30 pa3 album_container">
         <img class = "album_art" src = "{{ album.album_art_url }}">
@@ -21,9 +23,6 @@
         {% else %}
         <p class="favorite" data-pk={{album.pk}}>&#x2665;</p>
         {% endif %}
-        <div class="flex">
-            <div class="pr2"><i class="icofont-location-pin"></i></div>
-        </div>
         <a href="{% url 'edit_album' pk=album.pk %}">Edit Album</a><br>
         <a href="{% url 'delete_album' pk=album.pk %}">Delete Album</a><br>
     </div>

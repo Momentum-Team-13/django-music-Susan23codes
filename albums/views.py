@@ -9,8 +9,6 @@ import requests
 # Create your views here.
 def show_albums(request):
     albums = Album.objects.all()
-    response = requests.get(f"https://itunes.apple.com/search?media=music&attribute=albumTerm&term=selling england by the pound&limit=200&page=2")
-    response_json = response.json()
     return render(
         request, "albums/show_albums.html", {"albums": albums}
     )
@@ -46,6 +44,18 @@ def edit_album(request, pk):
     if request.method == 'POST':
         form = AlbumForm(data=request.POST, instance=album)
         if form.is_valid():
+            album = form.save(commit=False)
+            response = requests.get(
+                f"https://itunes.apple.com/search?media=music&attribute=albumTerm&term={album.title}&limit=200"
+            )
+            response_json = response.json()
+            result_objects = response_json["results"]
+            for result in result_objects:
+                artist_lower = album.artist.lower()
+                if artist_lower in result["artistName"].lower()or artist_lower in result["collectionName"].lower():
+                    filtered_result = result["artworkUrl100"]
+                    album.album_art_url = filtered_result
+                    break
             form.save()
             return redirect(to='show_albums')
     else:
