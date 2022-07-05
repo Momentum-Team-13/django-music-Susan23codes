@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class = "top_section">
+<h1 style="text-align:center;"><u>My Albums</u></h1>
+<h2 style="text-align:center;"">
+    <a href=" {% url 'add_album' %}">Add an Album</a><br>
+</h2>
+</div>
+{{ url }}
+
+<div class="flex flex-wrap scroll">
+    {% for album in albums %}
+    <div class="w-30 pa3 album_container">
+        <img class = "album_art" src = "{{ album.album_art_url }}">
+        <h2><a href="{% url 'album_detail' pk=album.pk %}">{{ album.title }}</a></h2>
+
+        <div>
+            <h3 class="title">{{ album.artist }}</h3>
+        </div>
+        {% if album.is_favorite %}
+        <p class="favorite" data-pk={{album.pk}}>&#x2661;</p>
+        {% else %}
+        <p class="favorite" data-pk={{album.pk}}>&#x2665;</p>
+        {% endif %}
+        <a href="{% url 'edit_album' pk=album.pk %}">Edit Album</a><br>
+        <a href="{% url 'delete_album' pk=album.pk %}">Delete Album</a><br>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

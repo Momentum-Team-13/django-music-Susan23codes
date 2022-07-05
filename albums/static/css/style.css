@@ -1,0 +1,90 @@
+
+.title {
+    color:blueviolet;
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 25px;
+    
+}
+
+.background {
+    background-color: rgb(93, 132, 190);
+    padding-bottom: 15px;
+}
+
+.top_section {
+    height: 20vh;
+}
+
+.scroll {
+    overflow: scroll;
+    height: 80vh;
+}
+
+.background_album_detail {
+    background-color: rgb(93, 132, 190);
+}
+
+.album_container {
+    border: 4px solid rgb(106, 106, 111);
+    border-radius: 10px;
+    box-shadow: 10px 11px 5px 0px;
+    background-color: rgb(191, 201, 220);
+    margin: 10px;
+    text-align: center;
+}
+
+.individual_album {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+}
+
+.home_button {
+    text-align: center;
+    margin: 0;
+}
+
+.edit_form, .delete_form, .add_form {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.cancel_button {
+    padding-top: 10px;
+}
+
+.favorite {
+    font-size: 40px;
+    color: red;
+}
+
+.favorite_detail {
+    font-size: 40px;
+    color: red;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.date_added {
+    font-size: 15px;
+    font-family: italic;
+}
+
+.album_art {
+    width: 150px;
+}
+
+

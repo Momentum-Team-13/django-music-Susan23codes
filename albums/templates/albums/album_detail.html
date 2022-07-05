@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Album</h1>
+<p class="home_button"><a href="{% url 'show_albums' %}">Home</a></p><br> 
+
+<div class="background_album_detail">
+    <div class="album_container individual_album">
+        {% if album.is_favorite %}
+        <p class="favorite_detail" data-pk={{album.pk}}>&#x2661;</p>
+        {% else %}
+        <p class="favorite_detail" data-pk={{album.pk}}>&#x2665;</p>
+        {% endif %}
+        <img class = "album_art" src = "{{ album.album_art_url }}">
+      {{ album.title }}<br>
+      {{ album.artist }}<br>
+      <div class = "date_added">Date added: {{ album.created_date }}</div>
+    </div>
+  </div>
+
+{% endblock %}
