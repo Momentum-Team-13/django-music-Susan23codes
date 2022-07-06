@@ -15,6 +15,12 @@
       {{ album.title }}<br>
       {{ album.artist }}<br>
       <div class = "date_added">Date added: {{ album.created_date }}</div>
+      <div>Here are the albums you own by {{ album.artist }}:</div>
+      {% for album in album.artist_fk.albums.all %}
+        <ul class="other_albums_list">
+            <li>{{ album.title }}</li>
+        </ul>
+      {% endfor %}
     </div>
   </div>
 

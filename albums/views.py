@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Album
+from .models import Album, Artist
 from .forms import AlbumForm
 from django_music import settings
 from django.http import JsonResponse
@@ -18,13 +18,22 @@ def add_album(request):
         form = AlbumForm(data=request.POST)
         if form.is_valid():
             album = form.save(commit=False)
+            artist_list = Artist.objects.filter(name=album.new_artist_name)
+            if artist_list:
+                album.artist_fk = artist_list[0]
+            else: 
+                new_artist = Artist()
+                new_artist.name = album.new_artist_name
+                new_artist.save()
+                album.artist_fk = new_artist
+
             response = requests.get(
                 f"https://itunes.apple.com/search?media=music&attribute=albumTerm&term={album.title}&limit=200"
             )
             response_json = response.json()
             result_objects = response_json["results"]
             for result in result_objects:
-                artist_lower = album.artist.lower()
+                artist_lower = album.artist_fk.name.lower()
                 if artist_lower in result["artistName"].lower()or artist_lower in result["collectionName"].lower():
                     filtered_result = result["artworkUrl100"]
                     album.album_art_url = filtered_result

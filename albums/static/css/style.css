@@ -80,11 +80,16 @@ h1 {
 
 .date_added {
     font-size: 15px;
-    font-family: italic;
+    font-style: italic;
 }
 
 .album_art {
     width: 150px;
+}
+
+.other_albums_list {
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 
