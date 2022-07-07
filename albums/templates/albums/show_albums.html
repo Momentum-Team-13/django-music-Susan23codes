@@ -16,12 +16,12 @@
         <h2><a href="{% url 'album_detail' pk=album.pk %}">{{ album.title }}</a></h2>
 
         <div>
-            <h3 class="title">{{ album.artist }}</h3>
+            <h3 class="title">{{ album.new_artist_name }}</h3>
         </div>
         {% if album.is_favorite %}
-        <p class="favorite" data-pk={{album.pk}}>&#x2661;</p>
-        {% else %}
         <p class="favorite" data-pk={{album.pk}}>&#x2665;</p>
+        {% else %}
+        <p class="favorite" data-pk={{album.pk}}>&#x2661;</p>
         {% endif %}
         <a href="{% url 'edit_album' pk=album.pk %}">Edit Album</a><br>
         <a href="{% url 'delete_album' pk=album.pk %}">Delete Album</a><br>

@@ -7,19 +7,21 @@
 <div class="background_album_detail">
     <div class="album_container individual_album">
         {% if album.is_favorite %}
-        <p class="favorite_detail" data-pk={{album.pk}}>&#x2661;</p>
+        <p class="favorite_detail favorite" data-pk={{album.pk}}>&#x2665;</p>
         {% else %}
-        <p class="favorite_detail" data-pk={{album.pk}}>&#x2665;</p>
+        <p class="favorite_detail favorite" data-pk={{album.pk}}>&#x2661;</p>
         {% endif %}
         <img class = "album_art" src = "{{ album.album_art_url }}">
       {{ album.title }}<br>
       {{ album.artist }}<br>
       <div class = "date_added">Date added: {{ album.created_date }}</div>
-      <div>Here are the albums you own by {{ album.artist }}:</div>
-      {% for album in album.artist_fk.albums.all %}
+      <div>Here are the other albums you own by {{ album.new_artist_name }}:</div>
+      {% for other_album in album.artist_fk.albums.all %}
+        {% if album.title != other_album.title %}
         <ul class="other_albums_list">
-            <li>{{ album.title }}</li>
+            <li>{{ other_album.title }}</li>
         </ul>
+        {% endif %}
       {% endfor %}
     </div>
   </div>

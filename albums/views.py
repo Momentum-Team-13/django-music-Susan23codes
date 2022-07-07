@@ -8,7 +8,7 @@ import requests
 
 # Create your views here.
 def show_albums(request):
-    albums = Album.objects.all()
+    albums = Album.objects.all().order_by("-created_date")
     return render(
         request, "albums/show_albums.html", {"albums": albums}
     )
@@ -54,13 +54,22 @@ def edit_album(request, pk):
         form = AlbumForm(data=request.POST, instance=album)
         if form.is_valid():
             album = form.save(commit=False)
+            artist_list = Artist.objects.filter(name=album.new_artist_name)
+            if artist_list:
+                album.artist_fk = artist_list[0]
+            else: 
+                new_artist = Artist()
+                new_artist.name = album.new_artist_name
+                new_artist.save()
+                album.artist_fk = new_artist
+
             response = requests.get(
                 f"https://itunes.apple.com/search?media=music&attribute=albumTerm&term={album.title}&limit=200"
             )
             response_json = response.json()
             result_objects = response_json["results"]
             for result in result_objects:
-                artist_lower = album.artist.lower()
+                artist_lower = album.new_artist_name.lower()
                 if artist_lower in result["artistName"].lower()or artist_lower in result["collectionName"].lower():
                     filtered_result = result["artworkUrl100"]
                     album.album_art_url = filtered_result
@@ -87,6 +96,8 @@ def toggle_favorite(request, pk):
     album.is_favorite = not album.is_favorite
     album.save()
     return JsonResponse({"is_favorite": album.is_favorite})
+
+
 
 
 

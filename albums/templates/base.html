@@ -27,9 +27,9 @@
               .then(response => response.json())
               .then(data => {
                   if (data.is_favorite) {
-                      favorite.innerHTML = "&#x2661;"
-                  } else {
                       favorite.innerHTML = "&#x2665;"
+                  } else {
+                      favorite.innerHTML = "&#x2661;"
                   }
               });
       }
